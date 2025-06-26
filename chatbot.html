@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NS Chatbot</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9f0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #FFD700, #FF4500);
+      color: white;
+      padding: 15px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-container {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #fdfdfd;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      border-radius: 15px;
+      max-width: 75%;
+      line-height: 1.5;
+    }
+
+    .user {
+      background-color: #ffe0b2;
+      align-self: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .bot {
+      background-color: #f1f1f1;
+      align-self: flex-start;
+      text-align: left;
+      margin-right: auto;
+    }
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .input-area button {
+      margin-left: 10px;
+      padding: 10px 16px;
+      background-color: #ff8c00;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .input-area button:hover {
+      background-color: #e65100;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🤖 NS Chatbot</header>
+
+  <div class="chat-container" id="chatbox">
+    <div class="message bot">Hi there! How can I assist you today?</div>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+ <script>
+  let awaitingOption = false;
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatbox = document.getElementById("chatbox");
+
+    // Show user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.textContent = message;
+    chatbox.appendChild(userMsg);
+
+    let botResponse = "";
+
+    // If user just said hi/hello – show menu
+    if (/hi|hello|hey/i.test(message)) {
+      botResponse = `👋 Hello! How can I help you?\n\nPlease choose an option:\n1️⃣ Location\n2️⃣ Products\n3️⃣ Contact\n4️⃣ Pricing\n5️⃣ Working Hours`;
+      awaitingOption = true;
+    } 
+    // If waiting for numbered response
+    else if (awaitingOption && /^[1-5]$/.test(message)) {
+      switch (message) {
+        case "1":
+          botResponse = "📍 Our factory is located at Kachohalli Village, Dasanapura Hobli, Bangalore – 560091.";
+          break;
+        case "2":
+          botResponse = "🧾 We provide POS rolls, ATM rolls, barcode ribbons, bus tickets, and more.";
+          break;
+        case "3":
+          botResponse = "📞 Contact us at +91 98804 08606 or 📧 nsenterprisesnagavenihh@gmail.com.";
+          break;
+        case "4":
+          botResponse = "💸 Pricing varies by product and quantity. Please mention the item you're interested in.";
+          break;
+        case "5":
+          botResponse = "🕒 We're open Monday–Saturday, 9 AM to 7 PM. Closed on Sundays.";
+          break;
+        default:
+          botResponse = "❗ Please enter a valid option (1–5).";
+      }
+      awaitingOption = false; // reset
+    } 
+    // If user types number without greeting
+    else if (/^[1-5]$/.test(message)) {
+      botResponse = "❗ Please say 'Hi' first to see the options.";
+    }
+    // Unknown input
+    else {
+      botResponse = "🤖 I didn’t understand. Please say 'Hi' to start.";
+    }
+
+    // Show bot response
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.textContent = botResponse;
+    chatbox.appendChild(botMsg);
+
+    chatbox.scrollTop = chatbox.scrollHeight;
+    input.value = "";
+  }
+</script>
+
+
+</body>
+</html>
