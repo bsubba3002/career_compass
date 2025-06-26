@@ -266,5 +266,45 @@
     // Initialize
     showMainMenu();
   </script>
+  <!-- 🔙 Close Chatbot & Return Home -->
+<section class="return-home-section">
+  <div class="return-home-container">
+    <button onclick="window.close()" class="return-home-button">❌ Close & Return to Home</button>
+  </div>
+</section>
+
+<style>
+  .return-home-section {
+    width: 100%;
+    background: #ffeef2;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #f5c2cb;
+  }
+
+  .return-home-container {
+    text-align: center;
+  }
+
+  .return-home-button {
+    padding: 12px 24px;
+    background: linear-gradient(to right, #ffb6c1, #ff7043);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .return-home-button:hover {
+    background: linear-gradient(to right, #ff8a80, #ff5722);
+    transform: scale(1.05);
+  }
+</style>
+
 </body>
 </html>
