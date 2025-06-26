@@ -2,168 +2,552 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NS Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NS ENTERPRISES | Thermal Paper Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff9f0;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    header {
-      background: linear-gradient(to right, #FFD700, #FF4500);
-      color: white;
-      padding: 15px 20px;
-      font-size: 1.2rem;
+    body {
+      background: #fff8fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .transparent-header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255, 182, 193, 0.15);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 10px 0;
+      box-shadow: 0 2px 10px rgba(255, 182, 193, 0.3);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.4em;
       font-weight: bold;
+      color: #FF6F00;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #FF6F00;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #FF8F00;
+    }
+
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: 100px auto 60px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .slide {
+      display: none;
       text-align: center;
     }
 
-    .chat-container {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-      background: #fdfdfd;
+    .slide img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
     }
 
-    .message {
-      margin-bottom: 15px;
-      padding: 12px 15px;
-      border-radius: 15px;
-      max-width: 75%;
-      line-height: 1.5;
-    }
-
-    .user {
-      background-color: #ffe0b2;
-      align-self: flex-end;
-      text-align: right;
-      margin-left: auto;
-    }
-
-    .bot {
-      background-color: #f1f1f1;
-      align-self: flex-start;
-      text-align: left;
-      margin-right: auto;
-    }
-
-    .input-area {
-      display: flex;
-      border-top: 1px solid #ccc;
-      padding: 10px;
-      background: #fff;
-    }
-
-    .input-area input {
-      flex: 1;
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      outline: none;
-    }
-
-    .input-area button {
-      margin-left: 10px;
-      padding: 10px 16px;
-      background-color: #ff8c00;
+    .caption {
+      background: rgba(255, 111, 145, 0.85);
       color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
+      font-size: 1.1rem;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      font-weight: 600;
+      text-align: center;
     }
 
-    .input-area button:hover {
-      background-color: #e65100;
+    /* Footer */
+    footer {
+      background: rgba(34, 34, 34, 0.85);
+      backdrop-filter: blur(6px);
+      color: #ccc;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ffb6c1;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ff8c42;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .caption {
+        font-size: 1rem;
+        padding: 8px;
+      }
+
+      .slide img {
+        max-height: 250px;
+      }
+
+      .logo {
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <header>🤖 NS Chatbot</header>
+  <!-- Header -->
+  <header class="transparent-header">
+    <div class="nav-container">
+      <h1 class="logo">NS ENTERPRISES</h1>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Product</a>
+        <a href="about.html">About Us</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="chat-container" id="chatbox">
-    <div class="message bot">Hi there! How can I assist you today?</div>
+  <!-- Slideshow Gallery -->
+  <div class="slideshow-container">
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Thermal Billing Rolls">
+      <div class="caption">Thermal Billing Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Bar Code Thermal Ribbons">
+      <div class="caption">Bar Code Thermal Ribbons</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Jumbo Rolls Supply">
+      <div class="caption">Jumbo Rolls Supply</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="ATM Thermal Rolls">
+      <div class="caption">ATM Thermal Paper Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="POS Rolls">
+      <div class="caption">POS Thermal Paper Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Cash Register Rolls">
+      <div class="caption">Cash Register Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Fax Rolls">
+      <div class="caption">Fax Thermal Paper Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Toll Rolls">
+      <div class="caption">Toll Plaza Thermal Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Bus Ticket Rolls">
+      <div class="caption">Bus Ticket Thermal Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Parking Tickets">
+      <div class="caption">Parking Ticket Thermal Rolls</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Barcode Labels">
+      <div class="caption">Barcode Labels</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Gas Bills">
+      <div class="caption">Gas Bills (HP & Bharat)</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Medical Bills">
+      <div class="caption">Medical Bills</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Restaurant Bills">
+      <div class="caption">Restaurant Bills</div>
+    </div>
+    <div class="slide fade">
+      <img src="images/thermal-billing.jpeg" alt="Jumbo Pre-printed Receipts">
+      <div class="caption">Jumbo Pre-printed Receipts</div>
+    </div>
+  </div>
+<section style="text-align: center; max-width: 850px; margin: 0 auto 40px; padding: 20px;">
+  <p style="font-size: 1.05rem; line-height: 1.7; color: #444;">
+    <strong>WELCOME TO NS ENTERPRISES</strong><br /><br />
+    NS ENTERPRISES is a trusted name in delivering high-quality thermal paper solutions for a wide range of industries. From retail and hospitality to banking and transport, we offer a complete line of products including POS rolls, ATM rolls, barcode labels, billing receipts, and more. Backed by advanced converting facilities and a nationwide distribution network, we ensure prompt delivery and consistent quality. With a focus on innovation and customer satisfaction, NS ENTERPRISES is your one-stop destination for all thermal printing needs.
+  </p>
+
+  <div style="margin-top: 25px;">
+    <a href="products.html" style="
+      background-color: #e76f51;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(231, 111, 81, 0.2);
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    ">Explore More</a>
   </div>
 
-  <div class="input-area">
-    <input type="text" id="userInput" placeholder="Type your message..." />
-    <button onclick="sendMessage()">Send</button>
+<br>
+
+<!-- =========================
+     Client Testimonials Section
+     Auto-slide every 8 seconds
+     ========================= -->
+  <section>
+    <h2>Explore Our Offerings</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="images/thermal-billing.jpeg" alt="Thermal Billing Rolls" />
+        <h3>Thermal Billing Rolls</h3>
+        <p>POS-compatible rolls offering smudge-free prints with clear contrast.</p>
+        <strong>Available Sizes:</strong>
+        <ul>
+          <li>79mm x 50m</li>
+          <li>57mm x 15m</li>
+          <li>Custom lengths</li>
+        </ul>
+        <a href="contact.html" class="book-now-btn">Book Now</a>
+      </div>
+
+     
+
+    </div>
+    <style><style>
+  section {
+    background: #fff8fa;
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  section h2 {
+    text-align: center;
+    color: #e76f51;
+    margin-bottom: 40px;
+    font-size: 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 20px
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(255, 140, 66, 0.25);
+  }
+
+  .product-card h3 {
+    color: #e76f51;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .product-card p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .product-card ul {
+    list-style: disc;
+    text-align: left;
+    margin: 10px 0 15px 20px;
+    padding-left: 0;
+    color: #555;
+  }
+
+  .book-now-btn {
+    display: inline-block;
+    background-color: #e76f51;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .book-now-btn:hover {
+    background-color: #cc5c3e;
+  }
+</style>
+  </section>
+
+
+ <!-- =========================
+    contact us section
+     ========================= -->
+</section>
+<section style="background: #fff0f6; padding: 40px 20px; text-align: center; font-family: 'Poppins', sans-serif; color: #5a3e36;">
+  <h2 style="color: #e76f51; margin-bottom: 10px;">Visit NS ENTERPRISES</h2>
+  <p style="font-size: 1rem; max-width: 700px; margin: 0 auto 20px;">
+    We’re located in the heart of Bangalore and welcome you to explore our facility. You can find us here:
+  </p>
+
+  <div style="max-width: 900px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(231, 111, 81, 0.2);">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31103.65820332815!2d77.52677577598802!3d12.9855098312845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b3444fce6b%3A0x5696d7a0192f44a5!2sDasanapura%20Hobli%2C%20Bangalore!5e0!3m2!1sen!2sin!4v1687321234567!5m2!1sen!2sin"
+      width="100%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
 
- <script>
-  let awaitingOption = false;
+  <p style="margin: 20px 0 10px; font-weight: bold;">
+    📍 Factory No. 43, SY No. 7/2, Kachohalli Village,<br>Dasanapura Hobli, Bangalore – 560091
+  </p>
 
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if (!message) return;
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Dasanapura+Hobli,+Bangalore" target="_blank" style="
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #e76f51;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+  ">Get Directions</a>
+</section>
+<section style="background: #fff8fa; padding: 60px 20px; font-family: 'Poppins', sans-serif;">
+  <h2 style="text-align: center; color: #e76f51; font-size: 2rem; margin-bottom: 40px;">What Our Clients Say</h2>
 
-    const chatbox = document.getElementById("chatbox");
+  <div class="testimonial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: auto;">
+    
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Ravi Kumar">
+      <p>"NS Enterprises provides excellent thermal paper quality. We've been sourcing POS rolls from them for over a year with zero issues. Highly recommended!"</p>
+      <div class="testimonial-author">Ravi Kumar, Retail Store Owner</div>
+    </div>
 
-    // Show user message
-    const userMsg = document.createElement("div");
-    userMsg.className = "message user";
-    userMsg.textContent = message;
-    chatbox.appendChild(userMsg);
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Sneha Reddy">
+      <p>"Very professional service and timely delivery. The support team was helpful and responsive. Great for bulk orders too."</p>
+      <div class="testimonial-author">Sneha Reddy, Logistics Manager</div>
+    </div>
 
-    let botResponse = "";
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Ajay Mehta">
+      <p>"We switched to NS Enterprises for all our billing rolls, and the difference in quality was immediately noticeable. Prints are sharp and paper doesn’t jam."</p>
+      <div class="testimonial-author">Ajay Mehta, Supermarket Chain</div>
+    </div>
 
-    // If user just said hi/hello – show menu
-    if (/hi|hello|hey/i.test(message)) {
-      botResponse = `👋 Hello! How can I help you?\n\nPlease choose an option:\n1️⃣ Location\n2️⃣ Products\n3️⃣ Contact\n4️⃣ Pricing\n5️⃣ Working Hours`;
-      awaitingOption = true;
-    } 
-    // If waiting for numbered response
-    else if (awaitingOption && /^[1-5]$/.test(message)) {
-      switch (message) {
-        case "1":
-          botResponse = "📍 Our factory is located at Kachohalli Village, Dasanapura Hobli, Bangalore – 560091.";
-          break;
-        case "2":
-          botResponse = "🧾 We provide POS rolls, ATM rolls, barcode ribbons, bus tickets, and more.";
-          break;
-        case "3":
-          botResponse = "📞 Contact us at +91 98804 08606 or 📧 nsenterprisesnagavenihh@gmail.com.";
-          break;
-        case "4":
-          botResponse = "💸 Pricing varies by product and quantity. Please mention the item you're interested in.";
-          break;
-        case "5":
-          botResponse = "🕒 We're open Monday–Saturday, 9 AM to 7 PM. Closed on Sundays.";
-          break;
-        default:
-          botResponse = "❗ Please enter a valid option (1–5).";
-      }
-      awaitingOption = false; // reset
-    } 
-    // If user types number without greeting
-    else if (/^[1-5]$/.test(message)) {
-      botResponse = "❗ Please say 'Hi' first to see the options.";
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Manoj Joshi">
+      <p>"Affordable pricing with premium-grade products. The thermal rolls work flawlessly with our ATM machines. Great vendor!"</p>
+      <div class="testimonial-author">Manoj Joshi, Banking Operations</div>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Priya Sharma">
+      <p>"Their barcode ribbons are of superior quality. Fast shipping and responsive support make them our go-to supplier."</p>
+      <div class="testimonial-author">Priya Sharma, Warehouse Manager</div>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="images/profile.png" alt="Ramesh Kulkarni">
+      <p>"Excellent customer service and product durability. We use their thermal paper rolls for all our retail outlets."</p>
+      <div class="testimonial-author">Ramesh Kulkarni, Franchise Owner</div>
+    </div>
+
+  </div>
+
+  <style>
+    .testimonial-card {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
     }
-    // Unknown input
-    else {
-      botResponse = "🤖 I didn’t understand. Please say 'Hi' to start.";
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
     }
 
-    // Show bot response
-    const botMsg = document.createElement("div");
-    botMsg.className = "message bot";
-    botMsg.textContent = botResponse;
-    chatbox.appendChild(botMsg);
+    .testimonial-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid #e76f51;
+    }
 
-    chatbox.scrollTop = chatbox.scrollHeight;
-    input.value = "";
+    .testimonial-card p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .testimonial-author {
+      font-weight: bold;
+      color: #cc5c3e;
+    }
+  </style>
+</section>
+<!-- Chatbot Launch Button Section -->
+<div class="chatbot-launch">
+  <button onclick="openChatbot()">💬 Chat with us</button>
+</div>
+
+<style>
+  .chatbot-launch {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+  }
+
+  .chatbot-launch button {
+    background: linear-gradient(135deg, #FFD700, #FF4500);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .chatbot-launch button:hover {
+    background: linear-gradient(135deg, #ffc107, #e65100);
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  function openChatbot() {
+    window.open(
+      "chatbot.html",
+      "NSChatbot",
+      "width=400,height=600,top=100,left=100,resizable=no,scrollbars=no"
+    );
   }
 </script>
 
 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 NS ENTERPRISES. All rights reserved.</p>
+    <p>📍 Factory No. 43, SY No. 7/2, Kachohalli Village, Dasanapura Hobli, Bangalore – 560091</p>
+    <p>📞 +91 98804 08606 | ✉️ <a href="mailto:nsenterprisesnagavenihh@gmail.com">nsenterprisesnagavenihh@gmail.com</a></p>
+    <div style="margin-top: 10px;">
+      <a href="#" target="_blank" style="margin: 0 10px; color: #ff6f91; font-size: 1.3rem;"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" target="_blank" style="margin: 0 10px; color: #ff6f91; font-size: 1.3rem;"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank" style="margin: 0 10px; color: #ff6f91; font-size: 1.3rem;"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+
+  <!-- JavaScript for auto slideshow -->
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      const slides = document.getElementsByClassName("slide");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2000);
+    }
+  </script>
 </body>
 </html>
