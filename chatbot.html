@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NS Chatbot</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -13,7 +14,6 @@
       flex-direction: column;
       height: 100vh;
     }
-
     header {
       background: linear-gradient(to right, #FFD700, #FF4500);
       color: white;
@@ -21,9 +21,7 @@
       font-size: 1.3rem;
       font-weight: bold;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
     .chat-container {
       flex: 1;
       padding: 15px;
@@ -32,7 +30,6 @@
       flex-direction: column;
       background: #fdfdfd;
     }
-
     .message {
       margin: 10px 0;
       padding: 12px 16px;
@@ -40,29 +37,15 @@
       max-width: 80%;
       word-wrap: break-word;
     }
-
-    .user {
-      background-color: #ffe4b3;
-      align-self: flex-end;
-      text-align: right;
-    }
-
-    .bot {
-      background-color: #f0f0f0;
-      align-self: flex-start;
-      text-align: left;
-    }
-
-    .options, .sub-options, .go-back {
+    .user { background-color: #ffe4b3; align-self: flex-end; text-align: right; }
+    .bot { background-color: #f0f0f0; align-self: flex-start; text-align: left; }
+    .options {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;
     }
-
-    .options button,
-    .sub-options button,
-    .go-back button {
+    .options button {
       padding: 10px 14px;
       background: #ff8c00;
       color: white;
@@ -70,31 +53,21 @@
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s ease;
     }
-
-    .options button:hover,
-    .sub-options button:hover,
-    .go-back button:hover {
-      background: #e65100;
-    }
-
+    .options button:hover { background: #e65100; }
     .input-area {
       display: flex;
       padding: 10px;
       border-top: 1px solid #ccc;
       background: #fff;
     }
-
     .input-area input {
       flex: 1;
       padding: 10px;
       border-radius: 20px;
       border: 1px solid #ccc;
       font-size: 1rem;
-      outline: none;
     }
-
     .input-area button {
       margin-left: 10px;
       padding: 10px 16px;
@@ -103,41 +76,20 @@
       border: none;
       border-radius: 20px;
       font-weight: bold;
-      cursor: pointer;
     }
-
-    .input-area button:hover {
-      background-color: #e65100;
-    }
-
+    .input-area button:hover { background-color: #e65100; }
     @media (max-width: 600px) {
-      .message {
-        max-width: 90%;
-        font-size: 0.95rem;
-      }
-
-      .input-area input,
-      .input-area button {
-        font-size: 0.9rem;
-      }
+      .message { max-width: 90%; font-size: 0.95rem; }
+      .input-area input, .input-area button { font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
-
   <header>🤖 NS Chatbot</header>
-
   <div class="chat-container" id="chatbox">
     <div class="message bot">👋 Hello! How can I help you?</div>
-    <div class="options" id="options">
-      <button onclick="handleMainOption(1)">1️⃣ Location</button>
-      <button onclick="handleMainOption(2)">2️⃣ Products</button>
-      <button onclick="handleMainOption(3)">3️⃣ Contact</button>
-      <button onclick="handleMainOption(4)">4️⃣ Pricing</button>
-      <button onclick="handleMainOption(5)">5️⃣ Working Hours</button>
-    </div>
   </div>
-
+  <div class="options" id="options"></div>
   <div class="input-area">
     <input type="text" id="userInput" placeholder="Type a custom question..." />
     <button onclick="sendMessage()">Send</button>
@@ -149,118 +101,130 @@
 
     const subQuestions = {
       1: {
-        title: "📍 Location - Choose a question:",
-        questions: {
+        title: "📍 Location – Choose a question:",
+        list: {
           a: "Where is your factory located?",
           b: "How do I reach your office from Majestic?",
           c: "Can you share the Google Maps link?",
           d: "Do you have branches in other cities?",
-          e: "Is parking available at your location?"
+          e: "Is there parking space available?"
         },
         answers: {
           a: "📍 Our factory is at Kachohalli Village, Dasanapura Hobli, Bangalore – 560091.",
-          b: "🚌 You can take the Metro to Nagasandra, then a cab to Kachohalli.",
-          c: "🔗 Here's our map link: https://maps.google.com?q=NS+Enterprises",
-          d: "🏢 Currently, we operate only in Bangalore.",
-          e: "🅿️ Yes, we have customer parking space at our factory."
+          b: "🧭 You can reach us via Tumkur Road, 30 mins by cab or BMTC bus.",
+          c: "🗺️ https://maps.app.goo.gl/xyz123",
+          d: "🏢 We currently operate only in Bangalore.",
+          e: "🚗 Yes, we have ample parking space."
         }
       },
       2: {
-        title: "🧾 Products - Choose a product:",
-        questions: {
-          a: "POS Rolls",
-          b: "ATM Rolls",
-          c: "Barcode Ribbons",
-          d: "Bus Tickets",
-          e: "Thermal Paper"
+        title: "🧾 Products – Choose a question:",
+        list: {
+          a: "What types of rolls do you sell?",
+          b: "Do you offer custom printed bills?",
+          c: "Can I buy in bulk?",
+          d: "Do you sell thermal paper?",
+          e: "Are barcode ribbons available?"
         },
         answers: {
-          a: "🧾 POS rolls are used in billing machines. We offer custom sizes.",
-          b: "🏧 ATM rolls are thermal and fit standard ATMs. Contact us for bulk rates.",
-          c: "🏷️ Barcode ribbons available in wax, resin, and wax-resin types.",
-          d: "🚌 Bus tickets can be customized per transport authority.",
-          e: "🧻 Thermal paper is available in bulk and retail packs."
+          a: "🧻 We sell POS, ATM, billing, jumbo, carbonless & bus ticket rolls.",
+          b: "🖨️ Yes – we provide custom printed bills & receipts.",
+          c: "📦 Yes, bulk orders available with discounts.",
+          d: "✅ Thermal paper available in multiple sizes.",
+          e: "🎯 Yes – barcode ribbons for all major printers."
         }
       },
       3: {
-        title: "📞 Contact - Choose a question:",
-        questions: {
+        title: "📞 Contact – Choose a question:",
+        list: {
           a: "What is your phone number?",
-          b: "What is your email ID?",
-          c: "Who is the contact person?",
-          d: "Do you support WhatsApp?",
-          e: "What are your office hours?"
+          b: "Do you respond on WhatsApp?",
+          c: "What is your email address?",
+          d: "Can I visit your office without appointment?",
+          e: "Who to contact for business inquiries?"
         },
         answers: {
-          a: "📞 You can call us at +91 98804 08606.",
-          b: "📧 Email us at nsenterprisesnagavenihh@gmail.com.",
-          c: "👨‍💼 Mr. Nagraj is our main contact person.",
-          d: "📱 Yes, you can message us on WhatsApp at the same number.",
-          e: "🕒 Office hours are 9 AM – 7 PM, Mon–Sat."
+          a: "📱 Call us at +91 98804 08606.",
+          b: "💬 Yes – we respond on WhatsApp too!",
+          c: "📧 Email: nsenterprisesnagavenihh@gmail.com.",
+          d: "🚪 Yes, but prior call is preferred.",
+          e: "👤 Please ask for Mr. Prashanth."
         }
       },
       4: {
-        title: "💸 Pricing - Choose a question:",
-        questions: {
-          a: "Do you offer bulk discounts?",
-          b: "Are prices negotiable?",
-          c: "Can I get a quote online?",
-          d: "Do you provide GST invoices?",
-          e: "Is shipping included in price?"
+        title: "💸 Pricing – Choose a question:",
+        list: {
+          a: "How do you price your products?",
+          b: "Are there bulk order discounts?",
+          c: "Do prices include GST?",
+          d: "Is delivery fee included?",
+          e: "Can I get a quotation?"
         },
         answers: {
-          a: "📦 Yes, we offer attractive bulk discounts.",
-          b: "🧾 Prices can be discussed for large orders.",
-          c: "🌐 Yes, contact us via email for a quote.",
-          d: "✅ We provide GST invoices with all orders.",
-          e: "🚚 Shipping cost depends on the location and order size."
+          a: "💰 Pricing depends on type, quantity & size.",
+          b: "📉 Yes – bulk order discounts available.",
+          c: "🧾 All prices are GST inclusive.",
+          d: "🚚 Free delivery within Bangalore city.",
+          e: "📄 Sure – contact us for a formal quote."
         }
       },
       5: {
-        title: "⏰ Working Hours - Choose a question:",
-        questions: {
+        title: "🕒 Working Hours – Choose a question:",
+        list: {
           a: "What are your working hours?",
-          b: "Are you open on Sundays?",
-          c: "Do you work on holidays?",
-          d: "When is lunch break?",
-          e: "Do you have 24/7 customer support?"
+          b: "Are you open on weekends?",
+          c: "Can I visit after 7 PM?",
+          d: "Are you open during holidays?",
+          e: "Do you have lunch breaks?"
         },
         answers: {
-          a: "🕘 We're open 9 AM to 7 PM, Monday to Saturday.",
-          b: "❌ We're closed on Sundays.",
-          c: "🎉 We are closed on major public holidays.",
-          d: "🍽️ Lunch break is between 1 PM – 2 PM.",
-          e: "📞 Customer support is 9 AM – 7 PM."
+          a: "🕘 Mon–Sat, 9 AM – 7 PM.",
+          b: "📅 Open on Saturdays, closed Sundays.",
+          c: "🌙 Sorry – visits after 7 PM not allowed.",
+          d: "🚫 Closed on major public holidays.",
+          e: "🍽️ Lunch break is 1 PM – 2 PM."
         }
       }
     };
 
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const msg = input.value.trim().toLowerCase();
-      if (!msg) return;
+    let currentMain = null;
 
-      addUserMessage(input.value);
-
-      if (msg === "hi" || msg === "hello") {
-        goToMainMenu();
-      } else if (/^[1-5]$/.test(msg)) {
-        handleMainOption(parseInt(msg));
-      } else if (/^[a-e]$/.test(msg) && currentMainOption) {
-        handleSubQuestion(msg);
-      } else {
-        addBotMessage("🤖 Sorry, I didn't get that. Please type 'hi' or use the menu.");
-      }
-
-      input.value = "";
+    function showMainMenu() {
+      currentMain = null;
+      optionsDiv.innerHTML = `
+        <button onclick="handleMain(1)">1️⃣ Location</button>
+        <button onclick="handleMain(2)">2️⃣ Products</button>
+        <button onclick="handleMain(3)">3️⃣ Contact</button>
+        <button onclick="handleMain(4)">4️⃣ Pricing</button>
+        <button onclick="handleMain(5)">5️⃣ Working Hours</button>
+      `;
     }
 
-    function addUserMessage(text) {
-      const msg = document.createElement("div");
-      msg.className = "message user";
-      msg.textContent = text;
-      chatbox.appendChild(msg);
-      scrollToBottom();
+    function handleMain(option) {
+      currentMain = option;
+      const group = subQuestions[option];
+      addBotMessage(group.title);
+      optionsDiv.innerHTML = "";
+      for (let key in group.list) {
+        const btn = document.createElement("button");
+        btn.textContent = `${key.toUpperCase()}) ${group.list[key]}`;
+        btn.onclick = () => handleSub(key);
+        optionsDiv.appendChild(btn);
+      }
+      const back = document.createElement("button");
+      back.textContent = "🔙 Back to Main Menu";
+      back.onclick = showMainMenu;
+      optionsDiv.appendChild(back);
+    }
+
+    function handleSub(letter) {
+      const answer = subQuestions[currentMain]?.answers[letter];
+      if (answer) {
+        addBotMessage(answer);
+      } else {
+        addBotMessage("❓ I didn't understand that.");
+      }
+      setTimeout(showMainMenu, 1000);
     }
 
     function addBotMessage(text) {
@@ -268,66 +232,39 @@
       msg.className = "message bot";
       msg.textContent = text;
       chatbox.appendChild(msg);
-      scrollToBottom();
+      scroll();
     }
 
-    function scrollToBottom() {
+    function addUserMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "message user";
+      msg.textContent = text;
+      chatbox.appendChild(msg);
+      scroll();
+    }
+
+    function scroll() {
       chatbox.scrollTop = chatbox.scrollHeight;
     }
 
-    let currentMainOption = null;
-
-    function handleMainOption(option) {
-      currentMainOption = option;
-      const section = subQuestions[option];
-      addBotMessage(section.title);
-
-      const subDiv = document.createElement("div");
-      subDiv.className = "sub-options";
-      Object.entries(section.questions).forEach(([key, value]) => {
-        const btn = document.createElement("button");
-        btn.textContent = `${key.toUpperCase()}️⃣ ${value}`;
-        btn.onclick = () => handleSubQuestion(key);
-        subDiv.appendChild(btn);
-      });
-
-      // Add Return and Go Back
-      const goBackDiv = document.createElement("div");
-      goBackDiv.className = "go-back";
-      goBackDiv.innerHTML = `
-        <button onclick="goToMainMenu()">🏠 Return to Main Menu</button>
-      `;
-
-      chatbox.appendChild(subDiv);
-      chatbox.appendChild(goBackDiv);
-      scrollToBottom();
-    }
-
-    function handleSubQuestion(letter) {
-      const answer = subQuestions[currentMainOption].answers[letter];
-      if (answer) {
-        addBotMessage(answer);
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+      addUserMessage(msg);
+      if (/hi|hello|hey/i.test(msg)) {
+        addBotMessage("👋 Hello again! Choose an option below.");
+        showMainMenu();
+      } else if (currentMain && /^[A-Ea-e]$/.test(msg)) {
+        handleSub(msg.toLowerCase());
       } else {
-        addBotMessage("❓ Unknown question.");
+        addBotMessage("🤖 I didn’t get that. Please say 'Hi' or use the buttons.");
       }
+      input.value = "";
     }
 
-    function goToMainMenu() {
-      addBotMessage("👋 Hello! How can I help you?\n\nPlease choose an option below:");
-      const oldOptions = document.querySelectorAll(".sub-options, .go-back");
-      oldOptions.forEach(el => el.remove());
-      showOptions();
-    }
-
-    function showOptions() {
-      optionsDiv.innerHTML = `
-        <button onclick="handleMainOption(1)">1️⃣ Location</button>
-        <button onclick="handleMainOption(2)">2️⃣ Products</button>
-        <button onclick="handleMainOption(3)">3️⃣ Contact</button>
-        <button onclick="handleMainOption(4)">4️⃣ Pricing</button>
-        <button onclick="handleMainOption(5)">5️⃣ Working Hours</button>
-      `;
-    }
+    // Initialize
+    showMainMenu();
   </script>
 </body>
 </html>
