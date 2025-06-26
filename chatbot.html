@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #fff9f0;
+      background: #fff8f0;
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -17,54 +17,81 @@
     header {
       background: linear-gradient(to right, #FFD700, #FF4500);
       color: white;
-      padding: 15px 20px;
-      font-size: 1.2rem;
+      padding: 16px;
+      font-size: 1.3rem;
       font-weight: bold;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     .chat-container {
       flex: 1;
-      padding: 20px;
+      padding: 15px;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
       background: #fdfdfd;
     }
 
     .message {
-      margin-bottom: 15px;
-      padding: 12px 15px;
-      border-radius: 15px;
-      max-width: 75%;
-      line-height: 1.5;
+      margin: 10px 0;
+      padding: 12px 16px;
+      border-radius: 20px;
+      max-width: 80%;
+      word-wrap: break-word;
     }
 
     .user {
-      background-color: #ffe0b2;
+      background-color: #ffe4b3;
       align-self: flex-end;
       text-align: right;
-      margin-left: auto;
     }
 
     .bot {
-      background-color: #f1f1f1;
+      background-color: #f0f0f0;
       align-self: flex-start;
       text-align: left;
-      margin-right: auto;
+    }
+
+    .options, .sub-options, .go-back {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .options button,
+    .sub-options button,
+    .go-back button {
+      padding: 10px 14px;
+      background: #ff8c00;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .options button:hover,
+    .sub-options button:hover,
+    .go-back button:hover {
+      background: #e65100;
     }
 
     .input-area {
       display: flex;
-      border-top: 1px solid #ccc;
       padding: 10px;
+      border-top: 1px solid #ccc;
       background: #fff;
     }
 
     .input-area input {
       flex: 1;
       padding: 10px;
-      font-size: 1rem;
       border-radius: 20px;
       border: 1px solid #ccc;
+      font-size: 1rem;
       outline: none;
     }
 
@@ -75,13 +102,24 @@
       color: white;
       border: none;
       border-radius: 20px;
-      cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
+      cursor: pointer;
     }
 
     .input-area button:hover {
       background-color: #e65100;
+    }
+
+    @media (max-width: 600px) {
+      .message {
+        max-width: 90%;
+        font-size: 0.95rem;
+      }
+
+      .input-area input,
+      .input-area button {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -90,80 +128,206 @@
   <header>🤖 NS Chatbot</header>
 
   <div class="chat-container" id="chatbox">
-    <div class="message bot">Hi there! How can I assist you today?</div>
+    <div class="message bot">👋 Hello! How can I help you?</div>
+    <div class="options" id="options">
+      <button onclick="handleMainOption(1)">1️⃣ Location</button>
+      <button onclick="handleMainOption(2)">2️⃣ Products</button>
+      <button onclick="handleMainOption(3)">3️⃣ Contact</button>
+      <button onclick="handleMainOption(4)">4️⃣ Pricing</button>
+      <button onclick="handleMainOption(5)">5️⃣ Working Hours</button>
+    </div>
   </div>
 
   <div class="input-area">
-    <input type="text" id="userInput" placeholder="Type your message..." />
+    <input type="text" id="userInput" placeholder="Type a custom question..." />
     <button onclick="sendMessage()">Send</button>
   </div>
 
- <script>
-  let awaitingOption = false;
-
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if (!message) return;
-
+  <script>
     const chatbox = document.getElementById("chatbox");
+    const optionsDiv = document.getElementById("options");
 
-    // Show user message
-    const userMsg = document.createElement("div");
-    userMsg.className = "message user";
-    userMsg.textContent = message;
-    chatbox.appendChild(userMsg);
-
-    let botResponse = "";
-
-    // If user just said hi/hello – show menu
-    if (/hi|hello|hey/i.test(message)) {
-      botResponse = `👋 Hello! How can I help you?\n\nPlease choose an option:\n1️⃣ Location\n2️⃣ Products\n3️⃣ Contact\n4️⃣ Pricing\n5️⃣ Working Hours`;
-      awaitingOption = true;
-    } 
-    // If waiting for numbered response
-    else if (awaitingOption && /^[1-5]$/.test(message)) {
-      switch (message) {
-        case "1":
-          botResponse = "📍 Our factory is located at Kachohalli Village, Dasanapura Hobli, Bangalore – 560091.";
-          break;
-        case "2":
-          botResponse = "🧾 We provide POS rolls, ATM rolls, barcode ribbons, bus tickets, and more.";
-          break;
-        case "3":
-          botResponse = "📞 Contact us at +91 98804 08606 or 📧 nsenterprisesnagavenihh@gmail.com.";
-          break;
-        case "4":
-          botResponse = "💸 Pricing varies by product and quantity. Please mention the item you're interested in.";
-          break;
-        case "5":
-          botResponse = "🕒 We're open Monday–Saturday, 9 AM to 7 PM. Closed on Sundays.";
-          break;
-        default:
-          botResponse = "❗ Please enter a valid option (1–5).";
+    const subQuestions = {
+      1: {
+        title: "📍 Location - Choose a question:",
+        questions: {
+          a: "Where is your factory located?",
+          b: "How do I reach your office from Majestic?",
+          c: "Can you share the Google Maps link?",
+          d: "Do you have branches in other cities?",
+          e: "Is parking available at your location?"
+        },
+        answers: {
+          a: "📍 Our factory is at Kachohalli Village, Dasanapura Hobli, Bangalore – 560091.",
+          b: "🚌 You can take the Metro to Nagasandra, then a cab to Kachohalli.",
+          c: "🔗 Here's our map link: https://maps.google.com?q=NS+Enterprises",
+          d: "🏢 Currently, we operate only in Bangalore.",
+          e: "🅿️ Yes, we have customer parking space at our factory."
+        }
+      },
+      2: {
+        title: "🧾 Products - Choose a product:",
+        questions: {
+          a: "POS Rolls",
+          b: "ATM Rolls",
+          c: "Barcode Ribbons",
+          d: "Bus Tickets",
+          e: "Thermal Paper"
+        },
+        answers: {
+          a: "🧾 POS rolls are used in billing machines. We offer custom sizes.",
+          b: "🏧 ATM rolls are thermal and fit standard ATMs. Contact us for bulk rates.",
+          c: "🏷️ Barcode ribbons available in wax, resin, and wax-resin types.",
+          d: "🚌 Bus tickets can be customized per transport authority.",
+          e: "🧻 Thermal paper is available in bulk and retail packs."
+        }
+      },
+      3: {
+        title: "📞 Contact - Choose a question:",
+        questions: {
+          a: "What is your phone number?",
+          b: "What is your email ID?",
+          c: "Who is the contact person?",
+          d: "Do you support WhatsApp?",
+          e: "What are your office hours?"
+        },
+        answers: {
+          a: "📞 You can call us at +91 98804 08606.",
+          b: "📧 Email us at nsenterprisesnagavenihh@gmail.com.",
+          c: "👨‍💼 Mr. Nagraj is our main contact person.",
+          d: "📱 Yes, you can message us on WhatsApp at the same number.",
+          e: "🕒 Office hours are 9 AM – 7 PM, Mon–Sat."
+        }
+      },
+      4: {
+        title: "💸 Pricing - Choose a question:",
+        questions: {
+          a: "Do you offer bulk discounts?",
+          b: "Are prices negotiable?",
+          c: "Can I get a quote online?",
+          d: "Do you provide GST invoices?",
+          e: "Is shipping included in price?"
+        },
+        answers: {
+          a: "📦 Yes, we offer attractive bulk discounts.",
+          b: "🧾 Prices can be discussed for large orders.",
+          c: "🌐 Yes, contact us via email for a quote.",
+          d: "✅ We provide GST invoices with all orders.",
+          e: "🚚 Shipping cost depends on the location and order size."
+        }
+      },
+      5: {
+        title: "⏰ Working Hours - Choose a question:",
+        questions: {
+          a: "What are your working hours?",
+          b: "Are you open on Sundays?",
+          c: "Do you work on holidays?",
+          d: "When is lunch break?",
+          e: "Do you have 24/7 customer support?"
+        },
+        answers: {
+          a: "🕘 We're open 9 AM to 7 PM, Monday to Saturday.",
+          b: "❌ We're closed on Sundays.",
+          c: "🎉 We are closed on major public holidays.",
+          d: "🍽️ Lunch break is between 1 PM – 2 PM.",
+          e: "📞 Customer support is 9 AM – 7 PM."
+        }
       }
-      awaitingOption = false; // reset
-    } 
-    // If user types number without greeting
-    else if (/^[1-5]$/.test(message)) {
-      botResponse = "❗ Please say 'Hi' first to see the options.";
+    };
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim().toLowerCase();
+      if (!msg) return;
+
+      addUserMessage(input.value);
+
+      if (msg === "hi" || msg === "hello") {
+        goToMainMenu();
+      } else if (/^[1-5]$/.test(msg)) {
+        handleMainOption(parseInt(msg));
+      } else if (/^[a-e]$/.test(msg) && currentMainOption) {
+        handleSubQuestion(msg);
+      } else {
+        addBotMessage("🤖 Sorry, I didn't get that. Please type 'hi' or use the menu.");
+      }
+
+      input.value = "";
     }
-    // Unknown input
-    else {
-      botResponse = "🤖 I didn’t understand. Please say 'Hi' to start.";
+
+    function addUserMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "message user";
+      msg.textContent = text;
+      chatbox.appendChild(msg);
+      scrollToBottom();
     }
 
-    // Show bot response
-    const botMsg = document.createElement("div");
-    botMsg.className = "message bot";
-    botMsg.textContent = botResponse;
-    chatbox.appendChild(botMsg);
+    function addBotMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "message bot";
+      msg.textContent = text;
+      chatbox.appendChild(msg);
+      scrollToBottom();
+    }
 
-    chatbox.scrollTop = chatbox.scrollHeight;
-    input.value = "";
-  }
-</script>
+    function scrollToBottom() {
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
 
+    let currentMainOption = null;
 
+    function handleMainOption(option) {
+      currentMainOption = option;
+      const section = subQuestions[option];
+      addBotMessage(section.title);
+
+      const subDiv = document.createElement("div");
+      subDiv.className = "sub-options";
+      Object.entries(section.questions).forEach(([key, value]) => {
+        const btn = document.createElement("button");
+        btn.textContent = `${key.toUpperCase()}️⃣ ${value}`;
+        btn.onclick = () => handleSubQuestion(key);
+        subDiv.appendChild(btn);
+      });
+
+      // Add Return and Go Back
+      const goBackDiv = document.createElement("div");
+      goBackDiv.className = "go-back";
+      goBackDiv.innerHTML = `
+        <button onclick="goToMainMenu()">🏠 Return to Main Menu</button>
+      `;
+
+      chatbox.appendChild(subDiv);
+      chatbox.appendChild(goBackDiv);
+      scrollToBottom();
+    }
+
+    function handleSubQuestion(letter) {
+      const answer = subQuestions[currentMainOption].answers[letter];
+      if (answer) {
+        addBotMessage(answer);
+      } else {
+        addBotMessage("❓ Unknown question.");
+      }
+    }
+
+    function goToMainMenu() {
+      addBotMessage("👋 Hello! How can I help you?\n\nPlease choose an option below:");
+      const oldOptions = document.querySelectorAll(".sub-options, .go-back");
+      oldOptions.forEach(el => el.remove());
+      showOptions();
+    }
+
+    function showOptions() {
+      optionsDiv.innerHTML = `
+        <button onclick="handleMainOption(1)">1️⃣ Location</button>
+        <button onclick="handleMainOption(2)">2️⃣ Products</button>
+        <button onclick="handleMainOption(3)">3️⃣ Contact</button>
+        <button onclick="handleMainOption(4)">4️⃣ Pricing</button>
+        <button onclick="handleMainOption(5)">5️⃣ Working Hours</button>
+      `;
+    }
+  </script>
 </body>
 </html>
