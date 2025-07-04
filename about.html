@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | NS ENTERPRISES</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f0f6ff;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(53, 85, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(53, 85, 255, 0.2);
+    }
+
+    header h1 {
+      color: #3555ff;
+      font-size: 1.6rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: #3555ff;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #1d3eff;
+    }
+
+    main {
+      padding: 120px 20px 60px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease, border 0.3s;
+    }
+
+    section:hover {
+      border: 1px solid #111;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #3555ff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ccd9ff;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #274ccf;
+      margin-top: 18px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background: #f6f9ff;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-left: 4px solid #3555ff;
+      border-radius: 6px;
+    }
+
+    footer {
+      background: #2e3a59;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #aaccff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>NS ENTERPRISES</h1>
+    <nav style="display:flex; gap:16px; font-size:0.95rem;">
+      <a href="index.html" style="color:#6a5acd; text-decoration:none;">Home</a>
+      <a href="products.html" style="color:#6a5acd; text-decoration:none;">Products</a>
+      <a href="about.html" style="color:#6a5acd; text-decoration:none;">About Us</a>
+      <a href="testimonials.html" style="color:#6a5acd; text-decoration:none;">Testimonials</a>
+      <a href="contact.html" style="color:#6a5acd; text-decoration:none;">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <section>
+      <h2>Company Overview</h2>
+      <p><strong>Name:</strong> NS ENTERPRISES</p>
+      <p><strong>Founded:</strong> 2023</p>
+      <p><strong>Location:</strong> Factory No. 43, SY No. 7/2, Kachohalli Village, Bangalore – 560091</p>
+      <p><strong>Industry:</strong> Thermal Paper & Billing Solutions</p>
+      <p><strong>Email:</strong> <a href="mailto:nsenterprisesnagavenihh@gmail.com">nsenterprisesnagavenihh@gmail.com</a></p>
+    </section>
+
+    <section>
+      <h2>Vision & Mission</h2>
+      <h3>Vision</h3>
+      <p>To become a nationwide leader in thermal printing solutions, delivering quality and trust.</p>
+      <h3>Mission</h3>
+      <p>To consistently provide high-quality, reliable and affordable printing products across diverse sectors.</p>
+    </section>
+
+    <section>
+      <h2>Core Values</h2>
+      <ul>
+        <li>Customer Satisfaction</li>
+        <li>Commitment to Quality</li>
+        <li>Transparency & Trust</li>
+        <li>Consistency in Delivery</li>
+        <li>Forward-Looking Innovation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Highlights</h2>
+      <ul>
+        <li>Serving 6+ Indian states</li>
+        <li>Supplying to top utility and gas partners</li>
+        <li>Over 1 Million rolls delivered</li>
+        <li>Based out of Bengaluru with pan-India logistics</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 NS ENTERPRISES. All rights reserved.</p>
+    <p>📍 Factory No. 43, SY No. 7/2, Kachohalli Village, Bangalore – 560091</p>
+    <p>📞 +91 98804 08606 |
+      ✉️ <a href="mailto:nsenterprisesnagavenihh@gmail.com">nsenterprisesnagavenihh@gmail.com</a></p>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+<div id="chat-button"
+     onclick="toggleChatPopup()"
+     style="
+       position: fixed;
+       bottom: 25px;
+       right: 25px;
+       background: #6a5acd;
+       color: #fff;
+       width: 60px;
+       height: 60px;
+       border-radius: 50%;
+       font-size: 28px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       cursor: pointer;
+       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+       z-index: 1000;
+     ">
+  🤖
+</div>
+
+<!-- Chat Popup Box with iframe -->
+<div id="chat-popup" style="
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 360px;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: none;
+  z-index: 1000;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-in-out;
+">
+
+  <!-- Chat Header Bar -->
+  <div style="
+    background:#6a5acd;
+    color:white;
+    padding:10px 15px;
+    font-weight:bold;
+    font-size:0.95rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;">
+    NS Chat Assistant
+    <span onclick="toggleChatPopup()" style="cursor:pointer;">✖️</span>
+  </div>
+
+  <!-- Iframe Loads chat.html -->
+  <iframe src="chatbot.html" style="border:none; width:100%; height:100%;"></iframe>
+</div>
+
+<!-- Toggle Chat Function -->
+<script>
+  function toggleChatPopup() {
+    const popup = document.getElementById("chat-popup");
+    popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+  }
+</script>
+
+<!-- Optional Fade-In Animation -->
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NS ENTERPRISES | Thermal Paper Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body style="margin:0; font-family:'Poppins', sans-serif; background:#f7faff; color:#333; overflow-x:hidden;">
+<br>
+  <!-- Header -->
+<header id="header" style="position:fixed; top:0; width:100%; background:rgba(106,90,205,0.1); backdrop-filter:blur(10px); padding:15px 0; z-index:1000;">
+  <div style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+    
+    <h1 class="animate-slide" style="margin:0; font-size:1.6rem; color:#6a5acd; transition:all 0.8s ease; opacity:0; transform:translateY(-20px);">
+      NS ENTERPRISES
+    </h1>
+
+    <nav style="display:flex; gap:16px; font-size:0.95rem;">
+      <a href="index.html" style="color:#6a5acd; text-decoration:none;">Home</a>
+      <a href="products.html" style="color:#6a5acd; text-decoration:none;">Products</a>
+      <a href="about.html" style="color:#6a5acd; text-decoration:none;">About Us</a>
+      <a href="testimonials.html" style="color:#6a5acd; text-decoration:none;">Testimonials</a>
+      <a href="contact.html" style="color:#6a5acd; text-decoration:none;">Contact Us</a>
+    </nav>
+
+  </div>
+</header>
+
+<br><br><br><br><br>
+  <!-- Slideshow -->
+<!-- Slideshow -->
+<section id="slides" style="margin:60px auto 0; position:relative; max-width:1000px; height:450px; overflow:hidden; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
+  <div class="slide" style="position:absolute; width:100%; height:100%; background:#6a5acd; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 1s;">
+    <h2 style="font-size:2rem; color:white; animation:zoom 10s infinite alternate;">Thermal Billing Rolls</h2>
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; background:#5882fa; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 1s;">
+    <h2 style="font-size:2rem; color:white; animation:zoom 10s infinite alternate;">Barcode Thermal Ribbons</h2>
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; background:#5c5dfe; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 1s;">
+    <h2 style="font-size:2rem; color:white; animation:zoom 10s infinite alternate;">Jumbo Rolls Supply</h2>
+  </div>
+</section>
+
+<!-- Zoom animation -->
+<style>
+  @keyframes zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+</style>
+
+<!-- Slideshow script -->
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll("#slides .slide");
+
+  function showSlides() {
+    slides.forEach((slide, index) => {
+      slide.style.opacity = "0";
+    });
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.opacity = "1";
+    setTimeout(showSlides, 4000); // Change slide every 4 seconds
+  }
+
+  // Initial show
+  window.onload = () => {
+    slides[0].style.opacity = "1"; // Show first slide immediately
+    setTimeout(showSlides, 4000);
+  };
+</script>
+<!-- Chat Button -->
+<!-- Floating Chat Button -->
+<!-- 🌐 Floating Chat Assistant Section -->
+<!-- Place this anywhere inside your <body> tag -->
+
+<!-- Floating Button (🤖 Icon) -->
+<div id="chat-button"
+     onclick="toggleChatPopup()"
+     style="
+       position: fixed;
+       bottom: 25px;
+       right: 25px;
+       background: #6a5acd;
+       color: #fff;
+       width: 60px;
+       height: 60px;
+       border-radius: 50%;
+       font-size: 28px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       cursor: pointer;
+       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+       z-index: 1000;
+     ">
+  🤖
+</div>
+
+<!-- Chat Popup Box with iframe -->
+<div id="chat-popup" style="
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 360px;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: none;
+  z-index: 1000;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-in-out;
+">
+
+  <!-- Chat Header Bar -->
+  <div style="
+    background:#6a5acd;
+    color:white;
+    padding:10px 15px;
+    font-weight:bold;
+    font-size:0.95rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;">
+    NS Chat Assistant
+    <span onclick="toggleChatPopup()" style="cursor:pointer;">✖️</span>
+  </div>
+
+  <!-- Iframe Loads chat.html -->
+  <iframe src="chatbot.html" style="border:none; width:100%; height:100%;"></iframe>
+</div>
+
+<!-- Toggle Chat Function -->
+<script>
+  function toggleChatPopup() {
+    const popup = document.getElementById("chat-popup");
+    popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+  }
+</script>
+
+<!-- Optional Fade-In Animation -->
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+
+
+  <!-- Welcome Section -->
+  <section class="reveal" style="max-width:900px; margin:60px auto; padding:20px; text-align:center; opacity:0; transform:translateY(40px); transition:all 0.8s ease;">
+    <h2 style="font-size:2rem; color:#6a5acd; margin-bottom:20px;">Welcome to NS ENTERPRISES</h2>
+    <p style="line-height:1.7;">
+      NS ENTERPRISES is a trusted name in delivering high‑quality thermal paper solutions across retail, hospitality, banking, transport & logistics...
+    </p>
+    <a href="#products" style="display:inline-block; margin-top:25px; background:#6a5acd; color:white; padding:12px 28px; border-radius:30px; text-decoration:none; font-weight:bold;">Explore More</a>
+  </section>
+
+  <!-- Products Section -->
+ <section id="products" class="reveal" style="background:#f7faff; padding:30px 15px; max-width:800px; margin:auto; opacity:0; transform:translateY(30px); transition:all 0.6s ease;">
+  <h2 style="text-align:center; color:#6a5acd; font-size:1.5rem; margin-bottom:25px;">Featured Product</h2>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+    <div style="background:#fff; border-radius:10px; padding:15px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+
+      <img 
+        src="images/thermal-billing.jpeg" 
+        alt="Thermal Billing Rolls" 
+        style="width:auto; max-width:90%; height:80px; object-fit:contain; border-radius:8px; margin:0 auto 10px; display:block;" 
+      />
+
+      <h3 style="color:#6a5acd; margin-bottom:6px; font-size:1rem;">Thermal Billing Rolls</h3>
+
+      <ul style="list-style-type:disc; text-align:left; margin:8px 0 12px 18px; color:#555; font-size:0.9rem;">
+        <li>79 mm × 50 m</li>
+        <li>57 mm × 15 m</li>
+        <li>Custom lengths</li>
+      </ul>
+
+      <a 
+        href="#visit" 
+        style="display:inline-block; background:#6a5acd; color:#fff; padding:7px 14px; border-radius:20px; font-weight:500; font-size:0.9rem; text-decoration:none;"
+      >
+        Book Now
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Visit Section with Responsive Google Map -->
+<section id="visit" class="reveal" style="background:#eef5ff; padding:15px 10px; text-align:center; opacity:0; transform:translateY(20px); transition:all 0.5s ease;">
+  <h2 style="color:#6a5acd; font-size:1.1rem; margin-bottom:6px;">Visit NS ENTERPRISES</h2>
+
+  <p style="font-size:0.8rem; max-width:480px; margin:0 auto 10px;">Factory No. 43, SY No. 7/2, Kachohalli Village, Dasanapura Hobli, Bangalore – 560091</p>
+
+  <!-- Extra small Map Container -->
+  <div style="position:relative; padding-bottom:40%; height:0; overflow:hidden; border-radius:6px; max-width:500px; margin:auto; box-shadow:0 2px 6px rgba(88,130,250,0.1);">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.495287543718!2d77.4535672!3d13.057103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1a35f4576fdf%3A0xc1e258073e3be68f!2sNS%20Enterprises!5e0!3m2!1sen!2sin!4v1625738376467!5m2!1sen!2sin"
+      width="100%" height="100%" style="position:absolute; top:0; left:0; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <a href="https://goo.gl/maps/xyz123" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:8px; background:#6a5acd; color:#fff; padding:6px 16px; border-radius:16px; text-decoration:none; font-weight:500; font-size:0.8rem;">
+    Get Directions
+  </a>
+</section>
+
+
+  <!-- Footer -->
+  <footer style="background:#2e3a59; color:#ccc; text-align:center; padding:25px 15px; font-size:0.9rem;">
+    <p>&copy; 2025 NS ENTERPRISES. All rights reserved.</p>
+    <p>📞 +91 98804 08606 | ✉️ nsenterprisesnagavenihh@gmail.com</p>
+  </footer>
+
+  <!-- JavaScript Animations -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const headerTitle = document.querySelector('.animate-slide');
+      headerTitle.style.transform = 'translateY(0)';
+      headerTitle.style.opacity = 1;
+
+      let slides = document.querySelectorAll('.slide');
+      let idx = 0;
+      const cycleSlides = () => {
+        slides.forEach((slide, i) => (slide.style.opacity = i === idx ? 1 : 0));
+        idx = (idx + 1) % slides.length;
+        setTimeout(cycleSlides, 5000);
+      };
+      cycleSlides();
+    });
+
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
