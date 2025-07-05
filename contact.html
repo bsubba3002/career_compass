@@ -166,13 +166,93 @@
 
   <header>
     <h1>NS ENTERPRISES</h1>
-    <nav>
+<section id="responsive-nav" style="background: rgba(106, 90, 205, 0.08); padding: 10px 20px; position: relative;">
+  <style>
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    .nav-title {
+      font-size: 1.3rem;
+      color: #6a5acd;
+      font-weight: bold;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #6a5acd;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #6a5acd;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(106, 90, 205, 0.1);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        padding: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+  </style>
+
+  <div class="nav-container">
+    <div class="nav-title">☰</div>
+
+    <!-- Toggle Button (3 Dots) -->
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+      ⋮
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="about.html">About Us</a>
       <a href="testimonials.html">Testimonials</a>
       <a href="contact.html">Contact Us</a>
-    </nav>
+    </div>
+  </div>
+</section>
+
   </header>
 
   <main>
