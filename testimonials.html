@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Testimonials | NS ENTERPRISES</title>
+  
+  <!-- Title -->
+  <title>Customer Testimonials | NS ENTERPRISES - Thermal Paper Solutions</title>
+
+  <!-- Meta Description -->
+  <meta name="description" content="Read genuine testimonials from satisfied customers of NS ENTERPRISES. Trusted for high-quality thermal paper rolls and reliable service.">
+
+  <!-- Meta Keywords -->
+  <meta name="keywords" content="NS ENTERPRISES testimonials, customer reviews, thermal paper feedback, thermal paper supplier reviews, quality service">
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="What Our Customers Say | NS ENTERPRISES">
+  <meta property="og:description" content="Explore testimonials and reviews from clients who trust NS ENTERPRISES for top-grade thermal paper solutions.">
+  <meta property="og:image" content="https://yourdomain.com/images/testimonials-banner.jpg"> <!-- Replace with actual image URL -->
+  <meta property="og:url" content="https://yourdomain.com/testimonials.html">
+  <meta property="og:type" content="website">
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
@@ -136,16 +154,119 @@
 </head>
 <body>
 
-  <header>
-    <h1>NS ENTERPRISES</h1>
-    <nav>
+<header id="header" style="position:fixed; top:0; width:100%; background:rgba(106,90,205,0.1); backdrop-filter:blur(10px); padding:15px 0; z-index:1000;">
+  <style>
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-title img {
+      height: 40px;
+    }
+
+    .logo-title h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #6a5acd;
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideInFade 0.8s ease forwards;
+    }
+
+    @keyframes slideInFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #6a5acd;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #6a5acd;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(106, 90, 205, 0.1);
+    }
+
+    /* Mobile styles */
+    @media (max-width: 600px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        padding: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+  </style>
+
+  <div class="header-container">
+    <!-- ✅ Logo + Name -->
+    <div class="logo-title">
+      <img src="images/logo.png" alt="Logo">
+      <h1>NS ENTERPRISES</h1>
+    </div>
+
+    <!-- ✅ Menu Icon (☰) -->
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  </div>
+
+  <!-- ✅ Navigation Links -->
+  <div class="nav-container" style="max-width:1200px; margin:auto; padding:0 20px;">
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="about.html">About Us</a>
       <a href="testimonials.html">Testimonials</a>
       <a href="contact.html">Contact Us</a>
-    </nav>
-  </header>
+    </div>
+  </div>
+</header>
+
 
 
   <main>

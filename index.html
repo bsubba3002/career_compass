@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Essential Meta Tags -->
   <meta charset="UTF-8" />
-  <title>NS ENTERPRISES | Thermal Paper Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Title & SEO -->
+  <title>NS ENTERPRISES | Thermal Paper Solutions</title>
+  <meta name="description" content="NS ENTERPRISES specializes in premium thermal paper rolls and printing solutions for billing, POS, and receipt needs." />
+  <meta name="keywords" content="NS ENTERPRISES, Thermal Paper, POS Rolls, Billing Paper, Thermal Printing, Receipt Rolls, Bangalore" />
+  <meta name="author" content="NS ENTERPRISES" />
+  <link rel="canonical" href="https://www.nsenterprises.in/" />
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="NS ENTERPRISES | Thermal Paper Solutions" />
+  <meta property="og:description" content="Explore our wide range of thermal paper rolls for POS, billing, and printing applications. Trusted by businesses across India." />
+  <meta property="og:image" content="https://www.nsenterprises.in/images/preview.jpg" />
+  <meta property="og:url" content="https://www.nsenterprises.in/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NS ENTERPRISES | Thermal Paper Solutions" />
+  <meta name="twitter:description" content="Quality thermal paper rolls and POS printing solutions delivered nationwide." />
+  <meta name="twitter:image" content="https://www.nsenterprises.in/images/preview.jpg" />
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NS ENTERPRISES",
+      "url": "https://www.nsenterprises.in",
+      "logo": "https://www.nsenterprises.in/images/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/nsenterprises",
+        "https://www.linkedin.com/company/nsenterprises"
+      ],
+      "description": "NS ENTERPRISES offers high-quality thermal paper rolls and printing solutions trusted by retail and industrial clients."
+    }
+  </script>
+
+  <!-- Custom Animation -->
   <style>
     @keyframes zoom {
       0% { transform: scale(1); }
@@ -12,26 +56,123 @@
     }
   </style>
 </head>
+
 <body style="margin:0; font-family:'Poppins', sans-serif; background:#f7faff; color:#333; overflow-x:hidden;">
 <br>
   <!-- Header -->
 <header id="header" style="position:fixed; top:0; width:100%; background:rgba(106,90,205,0.1); backdrop-filter:blur(10px); padding:15px 0; z-index:1000;">
-  <div style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
-    
-    <h1 class="animate-slide" style="margin:0; font-size:1.6rem; color:#6a5acd; transition:all 0.8s ease; opacity:0; transform:translateY(-20px);">
-      NS ENTERPRISES
-    </h1>
+  <style>
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-    <nav style="display:flex; gap:16px; font-size:0.95rem;">
-      <a href="index.html" style="color:#6a5acd; text-decoration:none;">Home</a>
-      <a href="products.html" style="color:#6a5acd; text-decoration:none;">Products</a>
-      <a href="about.html" style="color:#6a5acd; text-decoration:none;">About Us</a>
-      <a href="testimonials.html" style="color:#6a5acd; text-decoration:none;">Testimonials</a>
-      <a href="contact.html" style="color:#6a5acd; text-decoration:none;">Contact Us</a>
-    </nav>
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    .logo-title img {
+      height: 40px;
+    }
+
+    .logo-title h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #6a5acd;
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideInFade 0.8s ease forwards;
+    }
+
+    @keyframes slideInFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #6a5acd;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #6a5acd;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(106, 90, 205, 0.1);
+    }
+
+    /* Mobile styles */
+    @media (max-width: 600px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        padding: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+  </style>
+
+  <div class="header-container">
+    <!-- ✅ Logo + Name -->
+    <div class="logo-title">
+      <img src="images/logo.png" alt="Logo">
+      <h1>NS ENTERPRISES</h1>
+    </div>
+
+    <!-- ✅ Menu Icon (☰) -->
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  </div>
+
+  <!-- ✅ Navigation Links -->
+  <div class="nav-container" style="max-width:1200px; margin:auto; padding:0 20px;">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About Us</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
   </div>
 </header>
+
 
 <br><br><br><br><br>
   <!-- Slideshow -->

@@ -137,23 +137,43 @@
 <body>
 
   <!-- Header -->
-  <header>
-    <h1>NS ENTERPRISES</h1>
-<section id="responsive-nav" style="background: rgba(106, 90, 205, 0.08); padding: 10px 20px; position: relative;">
+<header id="header" style="position:fixed; top:0; width:100%; background:rgba(106,90,205,0.1); backdrop-filter:blur(10px); padding:15px 0; z-index:1000;">
   <style>
-    .nav-container {
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1000px;
-      margin: auto;
       flex-wrap: wrap;
     }
 
-    .nav-title {
-      font-size: 1.3rem;
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-title img {
+      height: 40px;
+    }
+
+    .logo-title h1 {
+      margin: 0;
+      font-size: 1.6rem;
       color: #6a5acd;
-      font-weight: bold;
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideInFade 0.8s ease forwards;
+    }
+
+    @keyframes slideInFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .nav-toggle {
@@ -184,7 +204,7 @@
       background: rgba(106, 90, 205, 0.1);
     }
 
-    /* Mobile Styles */
+    /* Mobile styles */
     @media (max-width: 600px) {
       .nav-toggle {
         display: block;
@@ -197,7 +217,7 @@
         margin-top: 10px;
         background: white;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         padding: 10px;
       }
 
@@ -207,14 +227,19 @@
     }
   </style>
 
-  <div class="nav-container">
-    <div class="nav-title">☰</div>
+  <div class="header-container">
+    <!-- ✅ Logo + Name -->
+    <div class="logo-title">
+      <img src="images/logo.png" alt="Logo">
+      <h1>NS ENTERPRISES</h1>
+    </div>
 
-    <!-- Toggle Button (3 Dots) -->
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
-    </button>
+    <!-- ✅ Menu Icon (☰) -->
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  </div>
 
-    <!-- Navigation Links -->
+  <!-- ✅ Navigation Links -->
+  <div class="nav-container" style="max-width:1200px; margin:auto; padding:0 20px;">
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
@@ -223,9 +248,8 @@
       <a href="contact.html">Contact Us</a>
     </div>
   </div>
-</section>
+</header>
 
-  </header>
 
   <!-- Main Content -->
   <main>
